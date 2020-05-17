@@ -19,6 +19,8 @@ public class CensusAnalyser {
         } catch (RuntimeException runtimeException) {
             throw new CensusAnalyserException(runtimeException.getMessage(),
                                                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        } catch (CSVBuilderException e) {
+            throw new CensusAnalyserException(e.getMessage(),e.type.name());
         }
     }
 
@@ -33,6 +35,8 @@ public class CensusAnalyser {
         } catch (RuntimeException runtimeException) {
             throw new CensusAnalyserException(runtimeException.getMessage(),
                                                     CensusAnalyserException.ExceptionType.CENSUS_FILE_PROBLEM);
+        } catch (CSVBuilderException e) {
+            throw new CensusAnalyserException(e.getMessage(),e.type.name());
         }
     }
 
