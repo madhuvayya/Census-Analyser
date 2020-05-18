@@ -70,8 +70,10 @@ public class CensusAnalyserTest {
     public void givenIndianStateCodeCSVFile_ReturnsCorrectRecords() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             int numberOfStateCodes = censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
-            Assert.assertEquals(37,numberOfStateCodes);
+            //Assert.assertEquals(37,numberOfStateCodes);
+            Assert.assertEquals(29, numberOfStateCodes);
         } catch (CensusAnalyserException e){ }
     }
 
