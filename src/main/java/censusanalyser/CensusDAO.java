@@ -22,24 +22,10 @@ public class CensusDAO {
         populationDensity = usCensusCSV.populationDensity;
     }
 
-    public IndiaCensusCSV getIndiaCensusCSV() {
-        return new IndiaCensusCSV(state,population,(int) populationDensity, (int) totalArea);
-    }
-
-    public int getPopulation() {
-        return population;
-    }
-
-    public int getTotalArea() {
-        return (int)totalArea;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public int getPopulationDensity() {
-        return (int)populationDensity;
+    public Object getCensusDTO(CensusAnalyser.Country country) {
+        if(country.equals(CensusAnalyser.Country.INDIA))
+            return new IndiaCensusCSV(state,population,(int)populationDensity,(int)totalArea);
+        return new USCensusCSV(state,stateCode,population,populationDensity,totalArea);
     }
     
 }
