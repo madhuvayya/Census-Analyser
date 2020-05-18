@@ -74,4 +74,14 @@ public class CensusAnalyser {
         String sortedCensusDataInJson = new Gson().toJson(sortedCensusData);
         return sortedCensusDataInJson;
     }
+
+    public String getSortedCensusDataAccordingToPopulationDensity() throws CensusAnalyserException {
+        if(censusStateMap == null || censusStateMap.size() ==0 ) {
+            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        List<IndiaCensusDAO> sortedCensusData = censusStateMap.values().stream().sorted(Comparator.comparing(IndiaCensusDAO::getDensityPerSqKm).reversed()).collect(Collectors.toList());
+        String sortedCensusDataInJson = new Gson().toJson(sortedCensusData);
+        return sortedCensusDataInJson;
+    }
+
 }
