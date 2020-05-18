@@ -24,7 +24,7 @@ public class CensusDAO {
 
     public Object getCensusDTO(CensusAnalyser.Country country) {
         if(country.equals(CensusAnalyser.Country.INDIA))
-            return new IndiaCensusCSV(state,population,(int)populationDensity,(int)totalArea);
+            return new IndiaCensusCSV(state,population,(int)populationDensity,(int)totalArea,stateCode);
         return new USCensusCSV(state,stateCode,population,populationDensity,totalArea);
     }
     
