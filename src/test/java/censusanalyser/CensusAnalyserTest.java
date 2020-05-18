@@ -118,7 +118,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_whenSortedByState_shouldReturnSortedResult() {
+    public void givenIndiaCensusData_WhenSortedByState_shouldReturnSortedResult() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
@@ -129,7 +129,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_whenSortedByState_ShouldReturnLastState() {
+    public void givenIndiaCensusData_WhenSortedByState_ShouldReturnLastState() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
@@ -140,7 +140,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_whenSortedByPopulation_shouldReturnMostPopulationStateName() {
+    public void givenIndiaCensusData_WhenSortedByPopulation_shouldReturnMostPopulationStateName() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
@@ -151,7 +151,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_whenSortedByPopulation_shouldReturnLeastPopulationStateName() {
+    public void givenIndiaCensusData_WhenSortedByPopulation_shouldReturnLeastPopulationStateName() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
@@ -162,7 +162,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_whenSortedByDensity_shouldReturnMostPopulationStateName() {
+    public void givenIndiaCensusData_WhenSortedByDensity_shouldReturnMostPopulationStateName() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
@@ -173,7 +173,7 @@ public class CensusAnalyserTest {
     }
 
     @Test
-    public void givenIndiaCensusData_whenSortedByDesity_shouldReturnLeastPopulationStateName() {
+    public void givenIndiaCensusData_WhenSortedByDesity_ShouldReturnLeastPopulationStateName() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
@@ -182,4 +182,26 @@ public class CensusAnalyserTest {
             Assert.assertEquals("Arunachal Pradesh", censusCSV[28].state);
         } catch (CensusAnalyserException e) {}
     }
+
+    @Test
+    public void givenIndiaCensusData_WhenSortedByArea_ShouldReturnLargeAreaState() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getSortedCensusDataAccordingToArea();
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Rajasthan", censusCSV[0].state);
+        } catch (CensusAnalyserException e) {}
+    }
+    @Test
+    public void givenIndiaCensusData_WhenSortedByArea_ShouldReturnSmallAreaState() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            String sortedCensusData = censusAnalyser.getSortedCensusDataAccordingToArea();
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(sortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals("Goa", censusCSV[28].state);
+        } catch (CensusAnalyserException e) {}
+    }
+
 }

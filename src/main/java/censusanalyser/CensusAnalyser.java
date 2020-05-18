@@ -84,4 +84,14 @@ public class CensusAnalyser {
         return sortedCensusDataInJson;
     }
 
+    public String getSortedCensusDataAccordingToArea() throws CensusAnalyserException {
+        if(censusStateMap == null || censusStateMap.size() ==0 ) {
+            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        List<IndiaCensusDAO> sortedCensusData = censusStateMap.values().stream().sorted(Comparator.comparing(IndiaCensusDAO::getAreaInSqKm).reversed()).collect(Collectors.toList());
+        String sortedCensusDataInJson = new Gson().toJson(sortedCensusData);
+        return sortedCensusDataInJson;
+    }
+
+
 }
