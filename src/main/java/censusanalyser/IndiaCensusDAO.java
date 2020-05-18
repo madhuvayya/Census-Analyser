@@ -12,4 +12,21 @@ public class IndiaCensusDAO {
         densityPerSqKm = indiaCensusCSV.densityPerSqKm;
         population = indiaCensusCSV.population;
     }
+
+    public int getPopulation() {
+        return population;
+    }
+
+    public int getAreaInSqKm() {
+        return areaInSqKm;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public int getDensityPerSqKm() {
+        return densityPerSqKm;
+    }
+
 }
