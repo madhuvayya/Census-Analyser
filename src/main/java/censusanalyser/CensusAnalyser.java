@@ -12,10 +12,8 @@ public class CensusAnalyser {
     }
 
     Map<String, CensusDAO> censusStateMap = null;
-    private Country country;
 
     public CensusAnalyser(Country country) {
-        this.country = country;
     }
 
     public int loadCensusData(Country country, String... csvFilePath) throws CensusAnalyserException {
@@ -23,8 +21,13 @@ public class CensusAnalyser {
         return censusStateMap.size();
     }
 
-    public String getStateWiseSortedCensusData(Country country) throws CensusAnalyserException {
+    public String getSortedCensusDataAccordingToStateName(Country country) throws CensusAnalyserException {
         Comparator<CensusDAO> censusComparator = Comparator.comparing(census -> census.state);
+        return this.getSortedCensusData(censusComparator,country);
+    }
+
+    public String getSortedCensusDataAccordingToStateCode(Country country) throws CensusAnalyserException {
+        Comparator<CensusDAO> censusComparator = Comparator.comparing(census -> census.stateCode);
         return this.getSortedCensusData(censusComparator,country);
     }
 

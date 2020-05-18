@@ -12,5 +12,4 @@ public class CensusAdapterFactory {
         else
             throw new CensusAnalyserException("Unknown Country", CensusAnalyserException.ExceptionType.INVALID_COUNTRY);
     }
-
 }
